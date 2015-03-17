@@ -9,31 +9,39 @@
 
     var isTimerOn = false;
     var time = 1*60 + 5;
+    var minutes = Math.floor( time / 60 );
+    if (minutes < 10) minutes = "0" + minutes;
+    var seconds = time % 60;
+    if (seconds < 10) seconds = "0" + seconds;
+    var text = minutes + ':' + seconds;
     var interval;
+
 function countdown() {
     interval = setInterval(function() {
-        var el = document.getElementById("countdown");
         if(time == 0) {
-            el.innerHTML = "Tomatinatime!";
-            clearInterval(interval);
-            return;
+          document.getElementById("countdown").innerHTML = "Pause for 5 Minutes";
+          document.getElementById("toggle").innerHTML = "Start";
+          clearInterval(interval);
         }
         var minutes = Math.floor( time / 60 );
         if (minutes < 10) minutes = "0" + minutes;
         var seconds = time % 60;
         if (seconds < 10) seconds = "0" + seconds;
         var text = minutes + ':' + seconds;
-        el.innerHTML = text;
+        document.getElementById("countdown").innerHTML = text;
         time--;
     }, 1000);
 }
 
-   function stop() {
+
+  function stop() {
     isTimerOn = false;
     clearInterval(interval);
     document.getElementById("toggle").innerHTML = "Start";
     alert("you crashed the pomodoro");
-   }
+    time = 1*60 + 5;
+    document.getElementById("countdown").innerHTML = text;
+  }
 
    function toggle() {
     if (!isTimerOn){
@@ -50,7 +58,7 @@ function countdown() {
     </script>
 </head>
 <body>
-<div id='countdown'></div>
+<div id='countdown'>Pomodoro</div>
 <button id="toggle" onclick="toggle()">Start</button>
 <button id="stop" onclick="stop()">Stop</button>
 </body>
