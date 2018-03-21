@@ -17,13 +17,13 @@
 //= require_tree .
 
 var isTimerOn = false; 
-var tomatoTime = 1500; 
-var pauseTime = 300;
+var tomatoTime = 150; //1500/150
+var pauseTime = 30; //300/30
 var time = tomatoTime;
 var interval;
 var isTomatoOn = true;
-var almostASecondInMiliseconds = 999;
-var allowedPauseTime = 120;
+var almostASecondInMilliseconds = 999;
+var allowedPauseTime = 12; //120/12
 var pomodoroTimeAtPause = 0;
 
 
@@ -64,7 +64,7 @@ function countdown() {
     time--;
     pomodoroTimeAtPause = time;
     $('.dial').val(time).trigger('change');
-  }, almostASecondInMiliseconds); 
+  }, almostASecondInMilliseconds); 
 }
 
 function end() {
@@ -80,7 +80,7 @@ function end() {
     icon: 'https://raw.githubusercontent.com/SarahNox/tomato/master/app/assets/images/tomato-medium.png'
   });
   $('.dial').val(time).trigger('configure', {'max': pauseTime , 'fgColor' : "#04B45F" });
-  setInterval(updateTimerDisplay, almostASecondInMiliseconds);
+  setInterval(updateTimerDisplay, almostASecondInMilliseconds);
 }
 
 function stop() {
@@ -109,7 +109,7 @@ function pause() {
     }
     updatePauseDisplay(time);
     time--;
-  }, almostASecondInMiliseconds); 
+  }, almostASecondInMilliseconds); 
 }
 
 
